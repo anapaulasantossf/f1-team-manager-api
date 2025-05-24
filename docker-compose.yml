@@ -1,0 +1,22 @@
+# YAML schema for Docker Compose
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: f1-team-manager-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db-f1-team-manager
+    ports:
+      - "5434:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  pg-data:
+    driver: local
